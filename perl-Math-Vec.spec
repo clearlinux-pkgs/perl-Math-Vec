@@ -4,16 +4,15 @@
 #
 Name     : perl-Math-Vec
 Version  : 1.01
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-vec-perl/libmath-vec-perl_1.01-3.debian.tar.xz
 Summary  : Object-Oriented Vector Math Methods in Perl
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Math-Vec-license
-Requires: perl-Math-Vec-man
-BuildRequires : perl-Module-Build
+Requires: perl-Math-Vec-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Math-Vec
@@ -24,6 +23,15 @@ perl Build.PL
 ./Build test
 ./Build install
 
+%package dev
+Summary: dev components for the perl-Math-Vec package.
+Group: Development
+Provides: perl-Math-Vec-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Math-Vec package.
+
+
 %package license
 Summary: license components for the perl-Math-Vec package.
 Group: Default
@@ -32,19 +40,11 @@ Group: Default
 license components for the perl-Math-Vec package.
 
 
-%package man
-Summary: man components for the perl-Math-Vec package.
-Group: Default
-
-%description man
-man components for the perl-Math-Vec package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Math-Vec-1.01
-mkdir -p %{_topdir}/BUILD/Math-Vec-1.01/deblicense/
+cd ..
+%setup -q -T -D -n Math-Vec-1.01 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Vec-1.01/deblicense/
 
 %build
@@ -69,12 +69,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Math-Vec
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Math-Vec/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Vec
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Vec/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -83,12 +83,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Math/Vec.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Math/Vec.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Math-Vec/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Math::Vec.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Math-Vec/deblicense_copyright
