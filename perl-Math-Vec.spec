@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Vec
 Version  : 1.01
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-vec-perl/libmath-vec-perl_1.01-3.debian.tar.xz
@@ -27,6 +27,7 @@ perl Build.PL
 Summary: dev components for the perl-Math-Vec package.
 Group: Development
 Provides: perl-Math-Vec-devel = %{version}-%{release}
+Requires: perl-Math-Vec = %{version}-%{release}
 
 %description dev
 dev components for the perl-Math-Vec package.
@@ -45,7 +46,7 @@ license components for the perl-Math-Vec package.
 cd ..
 %setup -q -T -D -n Math-Vec-1.01 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Vec-1.01/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Vec-1.01/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
