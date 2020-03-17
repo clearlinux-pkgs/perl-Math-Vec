@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Vec
 Version  : 1.01
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-vec-perl/libmath-vec-perl_1.01-3.debian.tar.xz
@@ -82,7 +82,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Vec
-cp %{_builddir}/Math-Vec-1.01/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Vec/d768c3dd22dd2af6fe378388e99ea0b6ffb6fb7e
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Vec/d768c3dd22dd2af6fe378388e99ea0b6ffb6fb7e
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -106,4 +106,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Math/Vec.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Math/Vec.pm
