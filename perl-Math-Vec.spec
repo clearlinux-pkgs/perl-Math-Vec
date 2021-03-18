@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Vec
 Version  : 1.01
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-vec-perl/libmath-vec-perl_1.01-3.debian.tar.xz
@@ -106,4 +106,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Math/Vec.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Math/Vec.pm
