@@ -5,7 +5,7 @@
 #
 Name     : perl-Math-Vec
 Version  : 1.01
-Release  : 26
+Release  : 27
 URL      : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/EW/EWILHELM/Math-Vec-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-vec-perl/libmath-vec-perl_1.01-3.debian.tar.xz
